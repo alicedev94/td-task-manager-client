@@ -27,6 +27,8 @@
     Email: '',
     Departament: 0,
     ID_Rol: 0,
+    Name: '',
+    Id_Permissions: ''
   });
   const users = ref();
   const roles = ref();
@@ -148,7 +150,7 @@
   }
 
   const editUser = (item: User) => {
-    selectedUser.value = { ...item };
+    (selectedUser.value as any) = { ...item };
     editDialogVisible.value = true;
   };
 
