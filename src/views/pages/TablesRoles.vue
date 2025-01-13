@@ -28,7 +28,7 @@
     Departament: 0,
     ID_Rol: 0,
     Name: '',
-    Id_Permissions: ''
+    Id_Permissions: '',
   });
   const users = ref();
   const roles = ref();
