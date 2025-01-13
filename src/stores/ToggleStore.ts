@@ -1,4 +1,3 @@
-// stores/toggleStore.js
 import { defineStore } from 'pinia';
 
 export const useToggleStore = defineStore('toggle', {

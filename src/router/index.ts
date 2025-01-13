@@ -3,12 +3,10 @@ import MainRoutes from './MainRouter';
 import AuthRoutes from './AuthRouter';
 import { useAuthStore } from '@/stores/Auth';
 
-// Rutas de la app
 const routes = [
   AuthRoutes,
   MainRoutes,
   {
-    // pagina para rutas desconocidas
     path: '/:pathMatch(.*)*',
     component: () => import('@/views/404/ErrorApp404.vue'),
   },
@@ -24,18 +22,17 @@ interface User {
   name: string;
 }
 
-interface AuthStore {
-  user: User | null;
-  returnUrl: string | null;
-  login(username: string, password: string): void;
-  logout(): void;
-}
+// interface AuthStore {
+//   user: User | null;
+//   returnUrl: string | null;
+//   login(username: string, password: string): void;
+//   logout(): void;
+// }
 
 router.beforeEach(async (to, from, next) => {
-  // redirigir a la página de inicio de sesión si no ha iniciado sesión e intenta acceder a una página restringida
   const publicPages = ['/'];
   const authRequired = !publicPages.includes(to.path);
-  const auth: AuthStore = useAuthStore();
+  const auth: any = useAuthStore();
 
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (authRequired && !auth.user) {
