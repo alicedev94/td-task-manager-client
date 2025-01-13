@@ -17,18 +17,6 @@ const router = createRouter({
   routes,
 });
 
-interface User {
-  id: number;
-  name: string;
-}
-
-// interface AuthStore {
-//   user: User | null;
-//   returnUrl: string | null;
-//   login(username: string, password: string): void;
-//   logout(): void;
-// }
-
 router.beforeEach(async (to, from, next) => {
   const publicPages = ['/'];
   const authRequired = !publicPages.includes(to.path);
