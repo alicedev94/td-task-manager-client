@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import MainRoutes from './MainRouter';
 import AuthRoutes from './AuthRouter';
 import { useAuthStore } from '@/stores/Auth';
@@ -10,14 +10,14 @@ const routes = [
   {
     // pagina para rutas desconocidas
     path: '/:pathMatch(.*)*',
-    component: () => import('@/views/404/ErrorApp404.vue')
-  }
-]
+    component: () => import('@/views/404/ErrorApp404.vue'),
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-})
+});
 
 interface User {
   id: number;
@@ -30,7 +30,6 @@ interface AuthStore {
   login(username: string, password: string): void;
   logout(): void;
 }
-
 
 router.beforeEach(async (to, from, next) => {
   // redirigir a la página de inicio de sesión si no ha iniciado sesión e intenta acceder a una página restringida
@@ -48,4 +47,4 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
-export default router
+export default router;
