@@ -1,45 +1,3 @@
-<script setup lang="ts">
-  import { onMounted, watch } from 'vue';
-  import { initFlowbite } from 'flowbite';
-  import { useToggleStore } from '@/stores/ToggleStore';
-  import { useAuthStore } from '@/stores/Auth';
-  import { useAppStore } from '@/stores/App';
-
-  // pinia
-  const authStore = useAuthStore();
-  const toggleStore = useToggleStore();
-  const appStore = useAppStore();
-
-  // Cargar la preferencia del usuario al montar el componente
-  onMounted(() => {
-    initFlowbite();
-    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
-    toggleStore.isToggled = isDarkMode;
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  });
-
-  // Observa los cambios en el estado isToggled y guarda la preferencia
-  watch(
-    () => toggleStore.isToggled,
-    (newVal) => {
-      localStorage.setItem('isDarkMode', newVal.toString());
-      if (newVal) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  );
-
-  // cerrar session
-  const handleLogout = () => {
-    authStore.logout();
-  };
-</script>
 
 <template>
   <nav
@@ -164,3 +122,47 @@
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+  import { onMounted, watch } from 'vue';
+  import { initFlowbite } from 'flowbite';
+  import { useToggleStore } from '@/stores/ToggleStore';
+  import { useAuthStore } from '@/stores/Auth';
+  import { useAppStore } from '@/stores/App';
+
+  // pinia
+  const authStore = useAuthStore();
+  const toggleStore = useToggleStore();
+  const appStore = useAppStore();
+
+  // Cargar la preferencia del usuario al montar el componente
+  onMounted(() => {
+    initFlowbite();
+    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+    toggleStore.isToggled = isDarkMode;
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  });
+
+  // Observa los cambios en el estado isToggled y guarda la preferencia
+  watch(
+    () => toggleStore.isToggled,
+    (newVal) => {
+      localStorage.setItem('isDarkMode', newVal.toString());
+      if (newVal) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  );
+
+  // cerrar session
+  const handleLogout = () => {
+    authStore.logout();
+  };
+</script>
+

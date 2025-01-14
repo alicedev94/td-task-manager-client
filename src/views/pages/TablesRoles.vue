@@ -1,3 +1,145 @@
+
+<template>
+  <Toast />
+  <Breadcrumb :data="breadcrumbOption" />
+  <h3 class="text-3xl font-bold mt-5 dark:text-white mb-7">Maestro de Roles</h3>
+
+  <div class="rounded-lg overflow-hidden border border-gray-200">
+    <DataTable
+      ref="dt"
+      :value="roles"
+      stripedRows
+      dataKey="Email"
+      :paginator="true"
+      :rows="10"
+      :filters="filters"
+      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+      :rowsPerPageOptions="[5, 10, 25]"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
+    >
+      <template #header>
+        <div
+          class="flex flex-wrap gap-3 align-items-center justify-content-between"
+        >
+          <IconField iconPosition="left">
+            <InputIcon>
+              <i class="pi pi-search" />
+            </InputIcon>
+            <InputText
+              v-model="filters['global'].value"
+              placeholder="Buscar"
+              size="small"
+            />
+          </IconField>
+
+          <Button
+            as="router-link"
+            label="Nuevo rol"
+            icon="pi pi-plus"
+            raised
+            class="mr-2 mb-1"
+            severity="contrast"
+            size="small"
+            to="/formRoles"
+          />
+        </div>
+      </template>
+      <Column field="Id" header="#"></Column>
+      <Column field="Name" header="Rol" sortable></Column>
+      <!-- <Column field="Id_Permissions" header="Permisos" sortable ></Column> -->
+      <Column field="Id_Permissions" header="Permisos">
+        <template #body="slotProps">
+          <Tag
+            v-for="permission in getPermissions(slotProps.data.Id_Permissions)"
+            :key="permission"
+            :value="permission"
+            class="mx-1"
+            :style="{
+              backgroundColor: '#003566',
+              borderColor: '#003566',
+              color: '#ffffff',
+            }"
+            rounded
+          />
+        </template>
+      </Column>
+      <Column :exportable="false" style="min-width: 8rem">
+        <template #body="slotProps">
+          <Button
+            icon="pi pi-pencil"
+            variant="text"
+            rounded
+            severity="info"
+            class="mr-2"
+            @click="editUser(slotProps.data)"
+          />
+          <Button
+            icon="pi pi-trash"
+            variant="text"
+            rounded
+            severity="danger"
+            @click="confirmDelete(slotProps.data)"
+          />
+        </template>
+      </Column>
+    </DataTable>
+    <ConfirmDialog />
+
+    <!-- -------------------------------------------------------- Update user ------------------------------------------------------- -->
+    <Dialog
+      modal
+      header="Editar Rol"
+      v-model:visible="editDialogVisible"
+      :style="{ width: '35rem' }"
+    >
+      <div class="card flex flex-wrap gap-4 w-full mb-4">
+        <div class="flex flex-col gap-2 flex-1">
+          <label for="name" class="font-semibold w-24">Nombre</label>
+          <InputText
+            id="name"
+            class="flex-auto"
+            v-model="selectedUser.Name"
+            autocomplete="off"
+            placeholder="Nombre del Rol"
+            size="small"
+          />
+        </div>
+
+        <div class="flex flex-col gap-2 flex-1">
+          <label for="departament" class="font-semibold w-24">Permisos</label>
+          <Select
+            v-model="selectedUser.Id_Permissions"
+            id="departament"
+            showClear
+            :options="departament"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Selecciona el rol"
+            size="small"
+          />
+        </div>
+      </div>
+      <template #footer>
+        <Button
+          label="Cancelar"
+          size="small"
+          @click="editDialogVisible = false"
+          severity="danger"
+        />
+
+        <Button
+          label="Guardar"
+          icon="pi pi-check"
+          size="small"
+          @click="saveUser"
+          severity="contrast"
+        />
+      </template>
+    </Dialog>
+    <!-- -------------------------------------------------------- Update user ------------------------------------------------------- -->
+  </div>
+</template>
+
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
   import { initFlowbite } from 'flowbite';
@@ -181,143 +323,3 @@
   };
 </script>
 
-<template>
-  <Toast />
-  <Breadcrumb :data="breadcrumbOption" />
-  <h3 class="text-3xl font-bold mt-5 dark:text-white mb-7">Maestro de Roles</h3>
-
-  <div class="rounded-lg overflow-hidden border border-gray-200">
-    <DataTable
-      ref="dt"
-      :value="roles"
-      stripedRows
-      dataKey="Email"
-      :paginator="true"
-      :rows="10"
-      :filters="filters"
-      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-      :rowsPerPageOptions="[5, 10, 25]"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
-    >
-      <template #header>
-        <div
-          class="flex flex-wrap gap-3 align-items-center justify-content-between"
-        >
-          <IconField iconPosition="left">
-            <InputIcon>
-              <i class="pi pi-search" />
-            </InputIcon>
-            <InputText
-              v-model="filters['global'].value"
-              placeholder="Buscar"
-              size="small"
-            />
-          </IconField>
-
-          <Button
-            as="router-link"
-            label="Nuevo rol"
-            icon="pi pi-plus"
-            raised
-            class="mr-2 mb-1"
-            severity="contrast"
-            size="small"
-            to="/formRoles"
-          />
-        </div>
-      </template>
-      <Column field="Id" header="#"></Column>
-      <Column field="Name" header="Rol" sortable></Column>
-      <!-- <Column field="Id_Permissions" header="Permisos" sortable ></Column> -->
-      <Column field="Id_Permissions" header="Permisos">
-        <template #body="slotProps">
-          <Tag
-            v-for="permission in getPermissions(slotProps.data.Id_Permissions)"
-            :key="permission"
-            :value="permission"
-            class="mx-1"
-            :style="{
-              backgroundColor: '#003566',
-              borderColor: '#003566',
-              color: '#ffffff',
-            }"
-            rounded
-          />
-        </template>
-      </Column>
-      <Column :exportable="false" style="min-width: 8rem">
-        <template #body="slotProps">
-          <Button
-            icon="pi pi-pencil"
-            variant="text"
-            rounded
-            severity="info"
-            class="mr-2"
-            @click="editUser(slotProps.data)"
-          />
-          <Button
-            icon="pi pi-trash"
-            variant="text"
-            rounded
-            severity="danger"
-            @click="confirmDelete(slotProps.data)"
-          />
-        </template>
-      </Column>
-    </DataTable>
-    <ConfirmDialog />
-
-    <!-- -------------------------------------------------------- Update user ------------------------------------------------------- -->
-    <Dialog
-      modal
-      header="Editar Rol"
-      v-model:visible="editDialogVisible"
-      :style="{ width: '35rem' }"
-    >
-      <div class="card flex flex-wrap gap-4 w-full mb-4">
-        <div class="flex flex-col gap-2 flex-1">
-          <label for="name" class="font-semibold w-24">Nombre</label>
-          <InputText
-            id="name"
-            class="flex-auto"
-            v-model="selectedUser.Name"
-            autocomplete="off"
-            placeholder="Nombre del Rol"
-            size="small"
-          />
-        </div>
-
-        <div class="flex flex-col gap-2 flex-1">
-          <label for="departament" class="font-semibold w-24">Permisos</label>
-          <Select
-            v-model="selectedUser.Id_Permissions"
-            id="departament"
-            showClear
-            :options="departament"
-            optionLabel="name"
-            optionValue="id"
-            placeholder="Selecciona el rol"
-            size="small"
-          />
-        </div>
-      </div>
-      <template #footer>
-        <Button
-          label="Cancelar"
-          size="small"
-          @click="editDialogVisible = false"
-          severity="danger"
-        />
-
-        <Button
-          label="Guardar"
-          icon="pi pi-check"
-          size="small"
-          @click="saveUser"
-          severity="contrast"
-        />
-      </template>
-    </Dialog>
-    <!-- -------------------------------------------------------- Update user ------------------------------------------------------- -->
-  </div>
-</template>

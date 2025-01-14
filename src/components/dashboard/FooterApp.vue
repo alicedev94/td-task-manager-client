@@ -1,12 +1,4 @@
-<script setup lang="ts">
-  import { onMounted } from 'vue';
-  import { initFlowbite } from 'flowbite';
 
-  // inicializar librería flowBite
-  onMounted(() => {
-    initFlowbite();
-  });
-</script>
 
 <template>
   <div class="p-3 mt-40 sm:ml-64 flex justify-center">
@@ -20,3 +12,13 @@
     </footer>
   </div>
 </template>
+
+<script setup lang="ts">
+  import { onMounted } from 'vue';
+  import { initFlowbite } from 'flowbite';
+
+  // inicializar librería flowBite
+  onMounted(() => {
+    initFlowbite();
+  });
+</script>

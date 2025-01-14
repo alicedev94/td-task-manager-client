@@ -1,9 +1,4 @@
-<script setup lang="ts">
-  import { RouterView } from 'vue-router';
-  import Navbar from '@/components/dashboard/NavbarApp.vue';
-  import Sidebar from '@/components/dashboard/SidebarApp.vue';
-  import Footer from '@/components/dashboard/FooterApp.vue';
-</script>
+
 
 <template>
   <!-- navbar de la app -->
@@ -26,6 +21,13 @@
 
   <Footer />
 </template>
+
+<script setup lang="ts">
+  import { RouterView } from 'vue-router';
+  import Navbar from '@/components/dashboard/NavbarApp.vue';
+  import Sidebar from '@/components/dashboard/SidebarApp.vue';
+  import Footer from '@/components/dashboard/FooterApp.vue';
+</script>
 
 <style>
   /* Style scroll */

@@ -1,18 +1,4 @@
-<script setup lang="ts">
-  import { onMounted, defineProps } from 'vue';
-  import { initFlowbite } from 'flowbite';
 
-  defineProps({
-    data: {
-      type: Object,
-      required: true,
-    },
-  });
-
-  onMounted(() => {
-    initFlowbite();
-  });
-</script>
 <template>
   <nav class="flex" aria-label="Breadcrumb">
     <ol
@@ -88,3 +74,19 @@
     </ol>
   </nav>
 </template>
+
+<script setup lang="ts">
+  import { onMounted, defineProps } from 'vue';
+  import { initFlowbite } from 'flowbite';
+
+  defineProps({
+    data: {
+      type: Object,
+      required: true,
+    },
+  });
+
+  onMounted(() => {
+    initFlowbite();
+  });
+</script>
