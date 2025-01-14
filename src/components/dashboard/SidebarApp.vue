@@ -126,29 +126,9 @@ const hasPermission = (id: number): boolean => {
   }
 };
 
-// Alicedev94 intervention
-const getItems = async () => {
-  try {
-    // Change to production URL
-    const { data } = await axios.get(
-      `http://localhost:3000/api/v1/navigation`
-    );
-    if (!data) {
-      throw new Error(`Fail to get items: ${data.error}`);
-    }
-
-    return { success: true, data };
-  } catch (error) {
-    return { success: false, error };
-  }
-};
-
 // inicializar librería flowBite
 onMounted(async () => {
   await getRoles();
-  let responseItems = await getItems();
-  // items.value = responseItems?.data?.data ?? '';
-  // console.log(items.value);
   initFlowbite();
 });
 
