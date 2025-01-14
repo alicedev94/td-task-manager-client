@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "types": [
+      "node", // Si estás usando Node.js
+      "./src/types/shims-vue"
+    ]
+  },
   "files": [],
   "references": [
     {

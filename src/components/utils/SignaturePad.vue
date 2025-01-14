@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { VueSignaturePad } from '@selemondev/vue3-signature-pad'
-import type { CanvasSignature } from '@selemondev/vue3-signature-pad'
+// import type { CanvasSignature } from '@selemondev/vue3-signature-pad'
 
 const options = ref({
   penColor: 'rgb(0,0,0)',
@@ -21,7 +21,7 @@ const colors = [
     color: 'rgb(255, 85, 51)',
   },
 ]
-const signature = ref<Signature>()
+const signature = ref<any>(null);
 
 function handleUndo() {
   return signature.value?.undo()
