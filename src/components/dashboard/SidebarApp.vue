@@ -30,49 +30,7 @@ const ID_Rol = authStore.user?.ID_Rol;
 const dataBaseUrlRol = `${import.meta.env.VITE_URL}/rol`;
 const roles = ref();
 const permisos = ref();
-// const items = ref();
 
-const items = ref([
-  {
-    label: 'Router',
-    icon: 'pi pi-palette',
-    items: [
-      {
-        label: 'Styled',
-        icon: 'pi pi-eraser',
-        route: '/theming/styled'
-      },
-      {
-        label: 'Unstyled',
-        icon: 'pi pi-heart',
-        route: '/theming/unstyled'
-      }
-    ]
-  },
-  {
-    label: 'Programmatic',
-    icon: 'pi pi-link',
-    command: () => {
-      router.push('/introduction');
-    }
-  },
-  {
-    label: 'External',
-    icon: 'pi pi-home',
-    items: [
-      {
-        label: 'Vue.js',
-        icon: 'pi pi-star',
-        url: 'https://vuejs.org/'
-      },
-      {
-        label: 'Vite.js',
-        icon: 'pi pi-bookmark',
-        url: 'https://vuejs.org/'
-      }
-    ]
-  }
-]);
 
 const getRoles = async () => {
   try {

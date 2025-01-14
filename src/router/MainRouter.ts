@@ -37,6 +37,11 @@ const MainRoutes = {
       path: '/formRoles',
       name: 'formRoles',
       component: () => import('@/views/formApp/formRoles.vue'),
+    },
+    {
+      path: '/incidents',
+      name: 'signature',
+      component: () => import('@/components/utils/SignaturePad.vue'),
     }
   ],
 };

@@ -57,6 +57,20 @@ const items = ref([
     ]
   },
   {
+    label: 'Actividades',
+    icon: 'pi pi-check',
+    items: [
+      {
+        label: 'Act - Asignación',
+        route: '/sheds/new'
+      },
+      {
+        label: 'Actividades - Listado',
+        route: '/sheds/list'
+      }
+    ]
+  },
+  {
     label: 'Incidencias',
     icon: 'pi pi-exclamation-circle',
     route: '/incidents'
