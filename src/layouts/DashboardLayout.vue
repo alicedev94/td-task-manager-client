@@ -1,15 +1,8 @@
 
 
 <template>
-  <!-- navbar de la app -->
   <Navbar />
-  <!-- navbar de la app -->
-
-  <!-- sidebar de la app -->
   <Sidebar />
-  <!-- sidebar de la app -->
-
-  <!-- contenido de la app -->
   <div class="p-4 sm:ml-64 dark:bg-gray-900">
     <div
       class="p-3 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
@@ -17,8 +10,6 @@
       <RouterView />
     </div>
   </div>
-  <!-- contenido de la app -->
-
   <Footer />
 </template>
 

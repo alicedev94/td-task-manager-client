@@ -21,7 +21,7 @@ import { initFlowbite } from 'flowbite';
 import { useAuthStore } from '@/stores/Auth';
 import axios from 'axios';
 import router from '@/router';
-import PanelCo from '../PanelCo.vue';
+import PanelCo from '../utils/PanelCo.vue';
 import close from '../../assets/svg/close.svg';
 
 // pinia

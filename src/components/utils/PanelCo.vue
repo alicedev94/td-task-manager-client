@@ -43,10 +43,23 @@ const items = ref([
     ]
   },
   {
+    label: 'Usuarios',
+    icon: 'pi pi-users',
+    items: [
+      {
+        label: 'Usuarios - Nuevo',
+        route: '/users/new'
+      },
+      {
+        label: 'Usuarios - Listado',
+        route: '/users/list'
+      }
+    ]
+  },
+  {
     label: 'Incidencias',
     icon: 'pi pi-exclamation-circle',
     route: '/incidents'
   }
 ]);
-
 </script>
