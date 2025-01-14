@@ -19,51 +19,34 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import PanelMenu from 'primevue/panelmenu';
 
 const items = ref([
-    {
-        label: 'Router',
-        icon: 'pi pi-palette',
-        items: [
-            {
-                label: 'Styled',
-                icon: 'pi pi-eraser',
-                route: '/theming/styled'
-            },
-            {
-                label: 'Unstyled',
-                icon: 'pi pi-heart',
-                route: '/theming/unstyled'
-            }
-        ]
-    },
-    {
-        label: 'Programmatic',
-        icon: 'pi pi-link',
-        command: () => {
-            router.push('/introduction');
-        }
-    },
-    {
-        label: 'External',
-        icon: 'pi pi-home',
-        items: [
-            {
-                label: 'Vue.js',
-                icon: 'pi pi-star',
-                url: 'https://vuejs.org/'
-            },
-            {
-                label: 'Vite.js',
-                icon: 'pi pi-bookmark',
-                url: 'https://vuejs.org/'
-            }
-        ]
-    }
+  {
+    label: 'Galpones',
+    icon: 'pi pi-warehouse',
+    items: [
+      {
+        label: 'Galpones - Nuevo',
+        route: '/sheds/new'
+      },
+      {
+        label: 'Galpones - Listado',
+        route: '/sheds/list'
+      },
+      {
+        label: 'Galpones - Cambio',
+        route: '/sheds/change'
+      }
+    ]
+  },
+  {
+    label: 'Incidencias',
+    icon: 'pi pi-exclamation-circle',
+    route: '/incidents'
+  }
 ]);
+
 </script>

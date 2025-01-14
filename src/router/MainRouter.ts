@@ -37,7 +37,7 @@ const MainRoutes = {
       path: '/formRoles',
       name: 'formRoles',
       component: () => import('@/views/formApp/formRoles.vue'),
-    },
+    }
   ],
 };
 

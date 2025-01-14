@@ -7,32 +7,8 @@
     <div class="flex flex-col justify-between h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
 
       <!-- Items -->
-      <!-- <div>
-        <div v-for="item in items">
-          <div v-if="item.children && item.children.length">
-            <div
-              class="flex items-center p-2 text-dark font-semibold  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <span class="ms-3">{{ item.name }}</span>
-            </div>
-
-            <div v-for="child in item.children">
-              <RouterLink :to="child.link"
-                class="flex items-center p-2 text-gray-400 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                <span class="ms-3">{{ child.name }}</span>
-              </RouterLink>
-            </div>
-          </div>
-          <div v-else>
-            <RouterLink :to="item.link"
-              class="flex items-center p-2 text-dark font-semibold rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <span class="ms-3">{{ item.name }}</span>
-            </RouterLink>
-          </div>
-        </div>
-      </div> -->
-
-
-      <!-- items 2 -->
+   
+      <PanelCo />
 
       <div class="card flex justify-center">
         <PanelMenu :model="items" class="w-full md:w-80">
@@ -74,7 +50,7 @@ import { initFlowbite } from 'flowbite';
 import { useAuthStore } from '@/stores/Auth';
 import axios from 'axios';
 import router from '@/router';
-
+import PanelCo from '../PanelCo.vue';
 
 // pinia
 const authStore = useAuthStore();
